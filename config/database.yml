@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  database: garage_development
+  host: localhost
+  port: 5432
+  username: mauro
+  password: 
+  encoding: utf8
