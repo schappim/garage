@@ -11,7 +11,13 @@ ActiveAdmin.register FuelExpense do
     column :fueled_on
     column :vehicle
     default_actions
+
+    panel "Totals" do
+      li "Expenses: "+fuel_expenses.count.to_s
+      li "Costs: "+number_to_currency(fuel_expenses.sum(:cost), :unit => "CHF", :format => '%u %n')
+    end
   end
+
   # Filter only by title
   filter :vehicle
   filter :invoice
@@ -19,4 +25,5 @@ ActiveAdmin.register FuelExpense do
   filter :cost
   filter :km
   filter :liters
+
 end

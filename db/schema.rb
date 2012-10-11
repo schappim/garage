@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120920193449) do
+ActiveRecord::Schema.define(:version => 20121011192800) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(:version => 20120920193449) do
     t.integer  "vehicle_id"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.decimal  "hours",       :precision => 8, :scale => 2
+    t.decimal  "kms",         :precision => 8, :scale => 2
   end
 
   add_index "repairs", ["vehicle_id"], :name => "index_repairs_on_vehicle_id"
@@ -80,11 +82,11 @@ ActiveRecord::Schema.define(:version => 20120920193449) do
   create_table "vehicles", :force => true do |t|
     t.string   "make"
     t.string   "model"
-    t.integer  "year"
     t.string   "plate"
     t.integer  "vehicle_type_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.date     "year"
   end
 
 end

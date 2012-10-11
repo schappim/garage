@@ -5,7 +5,7 @@ ActiveAdmin.register Vehicle do
     column :plate do |vehicle|
       link_to vehicle.plate, admin_vehicle_path(vehicle)
     end
-    column :vehicle_type
+    column :vehicle_type, :required => true 
     column :make
     column :model
     column :year
