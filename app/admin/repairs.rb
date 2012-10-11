@@ -11,6 +11,11 @@ ActiveAdmin.register Repair do
 
     default_actions
 
+    panel "Totals" do
+      li "Repairs: "+repairs.count.to_s
+      li "Costs: "+number_to_currency(repairs.sum(:cost), :unit => "CHF", :format => '%u %n')
+    end
+
   end
 
   form do |f|
@@ -24,10 +29,6 @@ ActiveAdmin.register Repair do
       f.input :description
     end
 
-    panel "Totals" do
-      li "Repairs: "+repairs.count.to_s
-      li "Costs: "+number_to_currency(repairs.sum(:cost), :unit => "CHF", :format => '%u %n')
-    end
   end
 
   # Filter only by title
