@@ -27,6 +27,7 @@ ActiveAdmin.register Repair do
       f.input :hours
       f.input :kms
       f.input :description
+      f.buttons
     end
 
   end
