@@ -4,5 +4,7 @@ rvm:
   - 1.9.3
   - 2.0.0
 
-before_script:
+script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
+before_script:
+  - psql -c 'create database garage_test;' -U postgres
