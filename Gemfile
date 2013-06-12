@@ -27,5 +27,5 @@ group :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'shoulda'
-  gem 'coveralls', require: false
+  gem 'coveralls', :require => false
 end
