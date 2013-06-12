@@ -9,7 +9,7 @@ development:
 
 test: &test
   adapter: postgresql
-  database: garage_development
+  database: garage_test
   host: localhost
   port: 5432
   username: postgres
@@ -19,10 +19,10 @@ test: &test
 
 production:
   adapter: postgresql
-  database: garage_development
+  database: garage_production
   host: localhost
   port: 5432
-  username: postgres 
+  username: postgres
   password: 
   encoding: utf8
 
