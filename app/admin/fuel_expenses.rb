@@ -14,7 +14,10 @@ ActiveAdmin.register FuelExpense do
 
     panel "Totals" do
       li "Expenses: "+fuel_expenses.count.to_s
-      li "Costs: "+number_to_currency(fuel_expenses.sum(:cost), :unit => "CHF", :format => '%u %n')
+      li do 
+        label "Costs:", :style => "display: inline-block;"
+        div number_to_currency(fuel_expenses.sum(:cost), :unit => "CHF", :format => '%u %n'), :class => "fuel_expenses_totals", :style => "display: inline-block;"
+      end
     end
   end
 
