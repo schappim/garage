@@ -15,11 +15,11 @@ ActiveAdmin.register FuelExpense do
     panel "Totals" do
       li do
         label "Registries:", :style => "display: inline-block;"
-        div FuelExpense.search(params['q']).count, :class => "fuel_expenses_qty", :style => "display: inline-block;"
+        div FuelExpense.search(params['q']).count, :class => "total_registries", :style => "display: inline-block;"
       end
       li do 
         label "Costs:", :style => "display: inline-block;"
-        div number_to_currency(FuelExpense.search(params['q']).sum(:cost), :unit => "CHF", :format => '%u %n'), :class => "fuel_expenses_totals", :style => "display: inline-block;"
+        div number_to_currency(FuelExpense.search(params['q']).sum(:cost), :unit => "CHF", :format => '%u %n'), :class => "total_costs", :style => "display: inline-block;"
       end
     end
   end

@@ -12,8 +12,14 @@ ActiveAdmin.register Repair do
     default_actions
 
     panel "Totals" do
-      li "Repairs: "+repairs.count.to_s
-      li "Costs: "+number_to_currency(repairs.sum(:cost), :unit => "CHF", :format => '%u %n')
+      li do
+        label "Registries:", :style => "display: inline-block;"
+        div Repair.search(params['q']).count, :class => "total_registries", :style => "display: inline-block;"
+      end
+      li do 
+        label "Costs:", :style => "display: inline-block;"
+        div number_to_currency(Repair.search(params['q']).sum(:cost), :unit => "CHF", :format => '%u %n'), :class => "total_costs", :style => "display: inline-block;"
+      end
     end
 
   end
