@@ -8,8 +8,19 @@ ActiveAdmin.register Vehicle do
     column :vehicle_type, :required => true 
     column :make
     column :model
-    column :year
+    column :year,
     default_actions
+  end
+
+  form do |f|
+    f.inputs "Vehicle" do
+      f.input :vehicle_type, :required => true 
+      f.input :make
+      f.input :model
+      f.input :plate
+      f.input :year, :start_year => 1980, :end_year => Date.today.year
+    end
+    f.actions
   end
   # Filter only by title
   filter :vehicle_type
