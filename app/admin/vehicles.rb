@@ -12,6 +12,22 @@ ActiveAdmin.register Vehicle do
     default_actions
   end
 
+  show do |v|
+    attributes_table do
+      row :make
+      row :model
+      row :plate
+      row :vehicle_type
+      row "Total Fuel Expenses" do
+        span number_to_currency(v.total_fuel_expenses, :unit => "CHF", :format => '%u %n'), :id => :total_fuel_expenses
+      end
+      row "Total Repairs" do
+        span number_to_currency(v.total_repairs, :unit => "CHF", :format => '%u %n'), :id => :total_repairs
+      end
+    end
+
+  end
+
   form do |f|
     f.inputs "Vehicle" do
       f.input :vehicle_type, :required => true 
