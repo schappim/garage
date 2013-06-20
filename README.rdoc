@@ -5,4 +5,3 @@
 {<img src="https://gemnasium.com/LAS-IT/garage.png" alt="Dependency Status" />}[https://gemnasium.com/LAS-IT/garage]
 {<img src="https://travis-ci.org/LAS-IT/garage.png?branch=master" alt="Build Status" />}[https://travis-ci.org/LAS-IT/garage]
 {<img src="https://coveralls.io/repos/LAS-IT/garage/badge.png?branch=master" alt="Coverage Status" />}[https://coveralls.io/r/LAS-IT/garage?branch=master]
-
