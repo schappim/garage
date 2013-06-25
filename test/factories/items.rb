@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :item do
     brand 'Bosh'
     name 'Battery'
+    units 5
 
     association :category 
   end

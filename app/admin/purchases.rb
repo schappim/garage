@@ -1,4 +1,4 @@
-ActiveAdmin.register Item do
+ActiveAdmin.register Purchase do
   
   menu :parent => "Inventory"
 
