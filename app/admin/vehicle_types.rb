@@ -1,5 +1,7 @@
 ActiveAdmin.register VehicleType do
 
+  menu :label => "Types", :parent => "Vehicles"
+
   config.sort_order = "name_asc"
   index  do
     column :name do |vehicle_type|

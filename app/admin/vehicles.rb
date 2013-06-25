@@ -1,5 +1,7 @@
 ActiveAdmin.register Vehicle do
 
+  menu :label => "List", :parent => "Vehicles"
+
   config.sort_order = "plate_asc"
   index  do
     column :plate do |vehicle|

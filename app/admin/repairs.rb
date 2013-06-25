@@ -1,5 +1,7 @@
 ActiveAdmin.register Repair do
 
+  menu :parent => "Vehicles"
+
   config.sort_order = "repaired_on_desc"
   index  do
     column :invoice do |repair|

@@ -47,6 +47,13 @@ ActiveAdmin.setup do |config|
   # This will ONLY change the title for the admin section. Other
   # namespaces will continue to use the main "site_title" configuration.
 
+  config.namespace :admin do |admin|
+    admin.build_menu do |menu|
+      menu.add :label => "Inventory"
+      menu.add :label => "Vehicles"
+    end
+  end
+
   # == User Authentication
   #
   # Active Admin will automatically call an authentication
@@ -115,7 +122,7 @@ ActiveAdmin.setup do |config|
   #
   # Enable and disable Batch Actions
   #
-  config.batch_actions = true
+  config.batch_actions = false
   
 
   # == Controller Filters

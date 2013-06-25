@@ -1,4 +1,6 @@
 ActiveAdmin.register FuelExpense do
+
+  menu :parent => "Vehicles"
   
   config.sort_order = "fueled_on_desc"
   index  do
