@@ -6,4 +6,8 @@ class Item < ActiveRecord::Base
 
   validates :brand, :name, :category_id, :units, :presence => true
   validates :units, :numericality => { :greater_than_or_equal_to => 0 }
+
+  def sku
+    "#{sprintf("%03d",self.category.id)}.#{sprintf("%04d",id)}"
+  end
 end
