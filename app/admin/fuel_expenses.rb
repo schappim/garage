@@ -7,7 +7,9 @@ ActiveAdmin.register FuelExpense do
     column :invoice do |fuel_expense|
       link_to fuel_expense.invoice, admin_fuel_expense_path(fuel_expense)
     end
-    column :cost
+    column :cost do |fuel_expense|
+      number_to_currency(fuel_expense.cost, :unit => "CHF", :format => '%u %n')
+    end
     column :km
     column :liters
     column :fueled_on
@@ -23,6 +25,20 @@ ActiveAdmin.register FuelExpense do
         label "Costs:", :style => "display: inline-block;"
         div number_to_currency(FuelExpense.search(params['q']).sum(:cost), :unit => "CHF", :format => '%u %n'), :class => "total_costs", :style => "display: inline-block;"
       end
+    end
+  end
+
+  show do |fuel_expense|
+    attributes_table do
+      row :id
+      row :invoice
+      row :cost do |v|
+        number_to_currency(v.cost, :unit => "CHF", :format => '%u %n')
+      end
+      row :liters
+      row :km
+      row :fueled_on
+      row :vehicle
     end
   end
 

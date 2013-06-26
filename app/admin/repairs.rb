@@ -7,7 +7,9 @@ ActiveAdmin.register Repair do
     column :invoice do |repair|
       link_to repair.invoice, admin_repair_path(repair)
     end
-    column :cost
+    column :cost do |repair|
+      number_to_currency(repair.cost, :unit => "CHF", :format => '%u %n')
+    end
     column :repaired_on
     column :vehicle
 
@@ -30,7 +32,9 @@ ActiveAdmin.register Repair do
     attributes_table do
       row :id
       row :invoice
-      row :cost
+      row :cost do |repair|
+        number_to_currency(repair.cost, :unit => "CHF", :format => '%u %n')
+      end
       row :description
       row :repaired_on
       row :vehicle
@@ -47,7 +51,7 @@ ActiveAdmin.register Repair do
               link_to repair_part.item.name, admin_item_path(repair_part.item)
             end
             column :avg_price do |repair_part|
-              repair_part.item.avg_price
+              number_to_currency(repair_part.item.avg_price, :unit => "CHF", :format => '%u %n')
             end
           end
         end

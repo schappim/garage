@@ -10,15 +10,26 @@ ActiveAdmin.register Vehicle do
     column :vehicle_type, :required => true 
     column :make
     column :model
-    column :year,
+    column :year do |vehicle|
+        DateTime.parse(vehicle.year.to_s).strftime("%Y") unless vehicle.year.nil?
+    end
+    column :fuel_expenses do |v|
+      number_to_currency(v.total_fuel_expenses, :unit => "CHF", :format => '%u %n')
+    end
+    column :repairs do |v|
+      number_to_currency(v.total_repairs, :unit => "CHF", :format => '%u %n')
+    end
     default_actions
   end
 
   show do |v|
     attributes_table do
+      row :plate
       row :make
       row :model
-      row :plate
+      row :year do
+        DateTime.parse(v.year.to_s).strftime("%Y")
+      end
       row :vehicle_type
       row "Total Fuel Expenses" do
         span number_to_currency(v.total_fuel_expenses, :unit => "CHF", :format => '%u %n'), :id => :total_fuel_expenses
@@ -33,7 +44,9 @@ ActiveAdmin.register Vehicle do
           panel "Last 10 Fuel Expenses" do
             table_for v.fuel_expenses.limit(10)  do 
               column :fueled_on 
-              column :cost 
+              column :cost do |fuel_expense|
+                number_to_currency(fuel_expense.cost, :unit => "CHF", :format => '%u %n')
+              end
               column :invoice do |fuel_expense|
                 link_to fuel_expense.invoice, admin_fuel_expense_path(fuel_expense)
               end
@@ -46,7 +59,9 @@ ActiveAdmin.register Vehicle do
           panel "Last 10 Repairs" do
             table_for v.repairs.limit(10)  do 
               column :repaired_on 
-              column :cost 
+              column :cost do |repair|
+                number_to_currency(repair.cost, :unit => "CHF", :format => '%u %n')
+              end
               column :invoice do |repair|
                 link_to repair.invoice, admin_repair_path(repair)
               end
