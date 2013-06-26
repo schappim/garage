@@ -4,6 +4,7 @@ class Purchase < ActiveRecord::Base
 
   before_validation :balance_costs
   validates :cost_per_unit, :total_cost, :units, :item_id, :presence => true
+
   after_save :update_item_units
 
  

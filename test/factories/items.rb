@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :item do
     brand 'Bosh'
-    name 'Battery'
+    sequence(:name){|n| "Battery#{n}" }
     units 5
 
     association :category 

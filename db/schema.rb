@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130625091124) do
+ActiveRecord::Schema.define(:version => 20130625134026) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -116,5 +116,15 @@ ActiveRecord::Schema.define(:version => 20130625091124) do
     t.datetime "updated_at",      :null => false
     t.date     "year"
   end
+
+  create_table "withdrawals", :force => true do |t|
+    t.integer  "units"
+    t.text     "reason"
+    t.integer  "item_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "withdrawals", ["item_id"], :name => "index_withdrawals_on_item_id"
 
 end
