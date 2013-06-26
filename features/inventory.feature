@@ -29,7 +29,6 @@ Feature: Inventory
       And the withdrawal has to belong to an item
       And I can see the item totals decrease by the withdrawn units
 
-@wip
   Scenario: Withdrawal can be related to a repair
     Given I'm logged in
       And an item exists

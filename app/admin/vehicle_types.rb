@@ -9,6 +9,31 @@ ActiveAdmin.register VehicleType do
     end
     default_actions
   end
+
+  show do |vehicle_type|
+    attributes_table do
+      row :id
+      row :name
+    end
+
+    columns do
+      column do
+        panel "Vehicles" do
+          table_for vehicle_type.vehicles do |vehicle|
+            column :plate
+            column :make
+            column :model
+            column :fuel_expenses do |v|
+              number_to_currency(v.total_fuel_expenses, :unit => "CHF", :format => '%u %n')
+            end
+            column :repairs do |v|
+              number_to_currency(v.total_repairs, :unit => "CHF", :format => '%u %n')
+            end
+          end
+        end
+      end
+    end
+  end
   # Filter only by title
   filter :name
 end
