@@ -4,7 +4,7 @@ ruby "2.0.0"
 gem 'rails', '3.2.13'
 gem 'pg'
 gem 'thin'
-gem 'activeadmin'
+gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'groupdate'
 gem 'chartkick'
