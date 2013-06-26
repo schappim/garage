@@ -23,4 +23,22 @@ ActiveAdmin.register Category do
     end
 
   end
+
+  form do |f|
+    f.inputs "Category" do
+      f.input :name
+    end
+
+    f.inputs "Items" do
+      f.has_many :items do |g|
+        g.input :name
+        g.input :brand
+        if g.object.new_record?
+          g.input :units
+        end
+      end
+    end
+
+    f.actions
+  end
 end
