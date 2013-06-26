@@ -28,6 +28,35 @@ ActiveAdmin.register Vehicle do
       end
     end
 
+      columns do
+        column do
+          panel "Last 10 Fuel Expenses" do
+            table_for v.fuel_expenses.limit(10)  do 
+              column :fueled_on 
+              column :cost 
+              column :invoice do |fuel_expense|
+                link_to fuel_expense.invoice, admin_fuel_expense_path(fuel_expense)
+              end
+              column :km
+              column :liters
+            end
+          end
+        end
+        column do
+          panel "Last 10 Repairs" do
+            table_for v.repairs.limit(10)  do 
+              column :repaired_on 
+              column :cost 
+              column :invoice do |repair|
+                link_to repair.invoice, admin_repair_path(repair)
+              end
+              column :kms
+              column :hours
+            end
+          end
+        end
+      end
+
   end
 
   form do |f|
