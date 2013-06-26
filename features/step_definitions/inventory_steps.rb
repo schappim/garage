@@ -11,6 +11,10 @@ Given(/^the item units is grater than (\d+)$/) do |arg1|
   FactoryGirl.create(:purchase)
 end
 
+Given(/^a repair exists$/) do
+  @repair = FactoryGirl.create(:repair)
+end
+
 When(/^add a new category$/) do
   @category_name = "Test Category"
   visit '/admin/categories/new'
@@ -43,7 +47,7 @@ When(/^I do a purchase of that item$/) do
 end
 
 When(/^I do a withdrawal of that item$/) do
-  @withdrawal_units = rand(5) + 1
+  @withdrawal_units = rand(@item.units) + 1
   @withdrawal_reason = "Cuz I say so!"
   visit '/admin/withdrawals/new'
   select(@item.name, :from => 'withdrawal_item_id')
@@ -51,6 +55,11 @@ When(/^I do a withdrawal of that item$/) do
   fill_in 'withdrawal_reason', :with => @withdrawal_reason
   click_on 'Create Withdrawal'
   find('.flash').should have_content('Withdrawal was successfully created.')
+end
+
+When(/^I add a repair part$/) do
+  @repair_part_units = rand(@item.units) + 1
+  FactoryGirl.create(:repair_part, :units => @repair_part_units, :item => @item, :repair => @repair)
 end
 
 Then(/^the category has to be in the db$/) do
@@ -96,3 +105,22 @@ Then(/^I can see the item totals decrease by the withdrawn units$/) do
   new_item_units = @previous_item_units - @withdrawal.units 
   @withdrawal.item.units.should == new_item_units
 end
+
+Then(/^the repair part has to be in the db$/) do
+  @repair_part = RepairPart.last
+  @repair_part.units.should == @repair_part_units
+end
+
+Then(/^the repair part has to belong to an item$/) do
+  @repair_part.item.should_not == nil
+end
+
+Then(/^the repair part has to belong to that repair$/) do
+  @repair.repair_parts.last.should == @repair_part
+end
+
+Then(/^I can see the item totals decrease by the quantity of repair parts used$/) do
+  new_item_units = @previous_item_units - @repair_part.units 
+  @repair_part.item.units.should == new_item_units
+end
+

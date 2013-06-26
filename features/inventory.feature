@@ -28,3 +28,15 @@ Feature: Inventory
      Then the withdrawal has to be in the db
       And the withdrawal has to belong to an item
       And I can see the item totals decrease by the withdrawn units
+
+@wip
+  Scenario: Withdrawal can be related to a repair
+    Given I'm logged in
+      And an item exists
+      And the item units is grater than 0
+      And a repair exists
+     When I add a repair part
+     Then the repair part has to be in the db
+      And the repair part has to belong to an item
+      And the repair part has to belong to that repair
+      And I can see the item totals decrease by the quantity of repair parts used

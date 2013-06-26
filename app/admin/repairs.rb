@@ -26,6 +26,35 @@ ActiveAdmin.register Repair do
 
   end
 
+  show do |repair|
+    attributes_table do
+      row :id
+      row :invoice
+      row :cost
+      row :description
+      row :repaired_on
+      row :vehicle
+      row :hours
+      row :kms
+    end
+
+    columns do
+      column do
+        panel "Repair Parts Used" do
+          table_for repair.repair_parts do
+            column :units
+            column :name do |repair_part|
+              link_to repair_part.item.name, admin_item_path(repair_part.item)
+            end
+            column :avg_price do |repair_part|
+              repair_part.item.avg_price
+            end
+          end
+        end
+      end
+    end
+  end
+
   form do |f|
     f.inputs do
       f.input :vehicle, :as => :select
@@ -35,8 +64,16 @@ ActiveAdmin.register Repair do
       f.input :hours
       f.input :kms
       f.input :description
-      f.buttons
     end
+
+    f.inputs "Repair Parts" do
+      f.has_many :repair_parts do |g|
+        g.input :item
+        g.input :units
+      end
+    end
+
+    f.actions
 
   end
 

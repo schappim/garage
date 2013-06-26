@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130625134026) do
+ActiveRecord::Schema.define(:version => 20130626105051) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -86,6 +86,17 @@ ActiveRecord::Schema.define(:version => 20130625134026) do
   end
 
   add_index "purchases", ["item_id"], :name => "index_purchases_on_item_id"
+
+  create_table "repair_parts", :force => true do |t|
+    t.integer  "units"
+    t.integer  "item_id"
+    t.integer  "repair_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "repair_parts", ["item_id"], :name => "index_repair_parts_on_item_id"
+  add_index "repair_parts", ["repair_id"], :name => "index_repair_parts_on_repair_id"
 
   create_table "repairs", :force => true do |t|
     t.string   "invoice"

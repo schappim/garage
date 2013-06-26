@@ -1,6 +1,9 @@
 class Repair < ActiveRecord::Base
-  attr_accessible :cost, :description, :invoice, :repaired_on, :vehicle_id, :kms, :hours
   belongs_to :vehicle
+  has_many :repair_parts
+  accepts_nested_attributes_for :repair_parts
+
+  attr_accessible :cost, :description, :invoice, :repaired_on, :vehicle_id, :kms, :hours, :repair_parts_attributes
 
   validates :cost, :invoice, :repaired_on, :vehicle_id, :kms, :hours, :presence => true
 
