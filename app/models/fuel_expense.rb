@@ -3,6 +3,8 @@ class FuelExpense < ActiveRecord::Base
   attr_accessible :cost, :fueled_on, :invoice, :km, :liters, :vehicle_id
 
   validates :cost, :fueled_on, :invoice, :km, :liters, :vehicle_id, :presence => true
+  validates :cost, :km, :numericality => { :greater_than => 0 }
+  validates :liters, :numericality => { :greater_than_or_equal_to => 0 }
 
   after_save :update_vehicle
 

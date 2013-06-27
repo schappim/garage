@@ -30,6 +30,11 @@ describe Purchase do
     FactoryGirl.build(:purchase, :units => -1).should_not be_valid
   end
 
+  it "is invalid if any of the costs is less than 0" do
+    FactoryGirl.build(:purchase, :cost_per_unit => -1).should_not be_valid
+    FactoryGirl.build(:purchase, :total_cost => -100).should_not be_valid
+  end
+
   it "is invalid without units" do
     FactoryGirl.build(:purchase, :units => nil).should_not be_valid
   end

@@ -15,6 +15,11 @@ describe Withdrawal do
     FactoryGirl.build(:withdrawal, :units => nil).should_not be_valid
   end
 
+  it "is invalid if units less than or equal to cero" do
+    FactoryGirl.build(:withdrawal, :units => -1).should_not be_valid
+    FactoryGirl.build(:withdrawal, :units => 0).should_not be_valid
+  end
+
   it "is invalid without a reason" do
     FactoryGirl.build(:withdrawal, :reason => nil).should_not be_valid
     FactoryGirl.build(:withdrawal, :reason => "").should_not be_valid

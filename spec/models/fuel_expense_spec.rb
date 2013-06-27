@@ -26,6 +26,20 @@ describe FuelExpense do
     FactoryGirl.build(:fuel_expense, :liters => nil).should_not be_valid
   end
 
+  it "is invalid if km are less than or equal to cero" do
+    FactoryGirl.build(:fuel_expense, :km => -100000).should_not be_valid
+    FactoryGirl.build(:fuel_expense, :km => 0).should_not be_valid
+  end
+
+  it "is invalid if cost is less than or equal to cero" do
+    FactoryGirl.build(:fuel_expense, :cost => -100).should_not be_valid
+    FactoryGirl.build(:fuel_expense, :cost => 0).should_not be_valid
+  end
+
+  it "is invalid if liters is less than cero" do
+    FactoryGirl.build(:fuel_expense, :liters => -10).should_not be_valid
+  end
+
   it "is invalid if it doesn't belong to a vehicle" do
     FactoryGirl.build(:fuel_expense, :vehicle_id => nil).should_not be_valid
   end
