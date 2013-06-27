@@ -28,7 +28,7 @@ ActiveAdmin.register Vehicle do
       row :make
       row :model
       row :year do
-        DateTime.parse(v.year.to_s).strftime("%Y")
+        v.year.nil? ? "" : DateTime.parse(v.year.to_s).strftime("%Y")
       end
       row :vehicle_type
       row "Total Fuel Expenses" do
