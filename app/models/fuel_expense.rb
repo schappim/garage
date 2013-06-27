@@ -4,6 +4,8 @@ class FuelExpense < ActiveRecord::Base
 
   validates :cost, :fueled_on, :invoice, :km, :liters, :vehicle_id, :presence => true
 
+  after_save :update_vehicle
+
   scope :last_6_months, where("fueled_on >= ?", 6.month.ago)
 
   def self.graph
@@ -11,4 +13,10 @@ class FuelExpense < ActiveRecord::Base
       :data => Hash[last_6_months.group_by_month(:fueled_on).order("month asc").sum(:cost).map {|k, v| [Date.strptime(k).strftime("%b %Y"), v]}]
     ]
   end
+
+  protected
+  def update_vehicle
+    self.vehicle.kms = km
+  end
+
 end

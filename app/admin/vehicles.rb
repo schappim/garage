@@ -9,6 +9,9 @@ ActiveAdmin.register Vehicle do
     end
     column :vehicle_type, :required => true 
     column :make
+    column :kms do |vehicle|
+      vehicle.kms
+    end
     column :model
     column :year do |vehicle|
         DateTime.parse(vehicle.year.to_s).strftime("%Y") unless vehicle.year.nil?
