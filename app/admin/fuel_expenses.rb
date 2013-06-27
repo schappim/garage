@@ -40,6 +40,8 @@ ActiveAdmin.register FuelExpense do
       row :fueled_on
       row :vehicle
     end
+
+    active_admin_comments
   end
 
   # Filter only by title
