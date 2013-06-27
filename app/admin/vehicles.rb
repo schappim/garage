@@ -34,6 +34,7 @@ ActiveAdmin.register Vehicle do
         v.year.nil? ? "" : DateTime.parse(v.year.to_s).strftime("%Y")
       end
       row :vehicle_type
+      row :kms
       row "Total Fuel Expenses" do
         span number_to_currency(v.total_fuel_expenses, :unit => "CHF", :format => '%u %n'), :id => :total_fuel_expenses
       end
@@ -84,6 +85,7 @@ ActiveAdmin.register Vehicle do
       f.input :model
       f.input :plate
       f.input :year, :start_year => 1980, :end_year => Date.today.year
+      f.input :kms
     end
     f.actions
   end

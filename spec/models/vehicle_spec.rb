@@ -22,6 +22,15 @@ describe Vehicle do
     FactoryGirl.build(:vehicle, :year => nil).should_not be_valid
   end
 
+  it "is invalid without kms" do
+    FactoryGirl.build(:vehicle, :kms => nil).should_not be_valid
+  end
+
+  it "is invalid if kms are less than or equal to cero" do
+    FactoryGirl.build(:vehicle, :kms => 0).should_not be_valid
+    FactoryGirl.build(:vehicle, :kms => -123456).should_not be_valid
+  end
+
   it "is invalid if not related to a vehicle type" do
     FactoryGirl.build(:vehicle, :vehicle_type_id => nil).should_not be_valid
   end

@@ -6,6 +6,7 @@ FactoryGirl.define do
     model 'Yaris'
     plate 'VD 123'
     year Time.now
+    kms 1234567
 
     association :vehicle_type 
   end
