@@ -9,10 +9,11 @@ class FuelExpense < ActiveRecord::Base
   after_save :update_vehicle
 
   scope :last_6_months, where("fueled_on >= ?", 6.month.ago)
+  scope :last_12_months, where("fueled_on >= ?", 12.month.ago)
 
   def self.graph
     Hash[ :name => "Fuel Expenses",
-      :data => Hash[last_6_months.group_by_month(:fueled_on).order("month asc").sum(:cost).map {|k, v| [Date.strptime(k).strftime("%b %Y"), v]}]
+      :data => Hash[last_12_months.group_by_month(:fueled_on).order("month asc").sum(:cost).map {|k, v| [Date.strptime(k).strftime("%b %Y"), v]}]
     ]
   end
 
